@@ -1,0 +1,26 @@
+
+<section>
+  <h2>Galpão <%= @warehouse.code %></h2>
+  <div>
+    <dl>
+      <dt>Nome:</dt>
+      <dd><%= @warehouse.name %></dd>
+      
+      <dt>Cidade:</dt>
+      <dd><%= @warehouse.city %></dd>
+      
+      <dt>Área:</dt>
+      <dd><%= @warehouse.area.to_fs(:delimited, delimiter: '.') %> m2</dd>
+      
+      <dt>Endereço:</dt>
+      <dd><%= @warehouse.address %></dd>
+      
+      <dt>CEP:</dt>
+      <dd><%= @warehouse.cep %></dd>
+
+      <dt>Descrição:</dt>
+      <dd><%= @warehouse.description %></dd>
+  </div>
+
+  <%= link_to 'Voltar', root_path %>
+</section>

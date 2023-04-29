@@ -1,0 +1,30 @@
+
+<section id='warehouses'>
+  <h2>Galpões</h2>
+
+  <div>
+    <%= link_to 'Cadastrar galpão', new_warehouse_path %>
+  </div>
+
+  <% @warehouses.each do |warehouse| %>
+    <div>
+      <dl>
+        <dt>Nome:</dt>
+        <dd><%= link_to warehouse.name, warehouse %></dd>
+
+        <dt>Código:</dt>
+        <dd><%= warehouse.code %></dd>
+
+        <dt>Cidade:</dt>
+        <dd><%= warehouse.city %></dd>
+
+        <dt>Área:</dt>
+        <dd><%= warehouse.area.to_fs(:delimited, delimiter: '.') %> m2</dd>
+      </dl>
+    </div>
+  <% end %>
+
+  <% if @warehouses.empty? %>
+    <p>Não há galpões cadastrados</p>
+  <% end %>
+</section>
