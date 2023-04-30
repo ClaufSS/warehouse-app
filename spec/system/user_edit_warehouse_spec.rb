@@ -37,7 +37,7 @@ describe 'Usário edita um galpão' do
     fill_in 'Área', with: '120000'
     fill_in 'Endereço', with: 'Avenida Aeroporto, 1001'
 
-    click_on 'Salvar'
+    click_on 'Enviar'
 
     expect(page).to have_content 'Galpão atualizado com sucesso.'
     expect(page).to have_content 'Nome: Galpão internacional'
@@ -61,7 +61,7 @@ describe 'Usário edita um galpão' do
     fill_in 'Código', with: ''
     fill_in 'Área', with: ''
 
-    click_on 'Salvar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Não foi possível atualizar o galpão.')
   end
