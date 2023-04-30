@@ -18,8 +18,24 @@ class WarehousesController < ApplicationController
       return redirect_to root_path, notice: 'Galpão cadastrado com sucesso'
     end
 
-    flash[:notice] = 'Galpão não cadastrado'
+    flash.now[:notice] = 'Galpão não cadastrado'
     render :new
+  end
+
+  def edit
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  def update
+    @warehouse = Warehouse.find(params[:id])
+
+    if @warehouse.update(warehouse_params)
+      flash[:notice] = 'Galpão atualizado com sucesso.'
+      return redirect_to @warehouse
+    end
+
+    flash.now[:notice] = 'Não foi possível atualizar o galpão.'
+    render :edit
   end
 
   private

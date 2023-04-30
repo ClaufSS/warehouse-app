@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário entra em detalhes de um galpão' do
   it 'e vê informações adicionais' do
-    Warehouse.create(
+    Warehouse.create!(
       name: 'Aeroporto Guarulhos', code: 'GRU', city: 'Guarulhos', area: 100_000,
       address: 'Avenida Aeroporto, 1000', cep: '00045-779',
       description: 'Galpão destinado para cargas internacionais'
@@ -22,7 +22,7 @@ describe 'Usuário entra em detalhes de um galpão' do
   end
 
   it 'e volta para tela inicial' do
-    Warehouse.create(
+    Warehouse.create!(
       name: 'Aeroporto Guarulhos', code: 'GRU', city: 'Guarulhos', area: 100_000,
       address: 'Avenida Aeroporto, 1000', cep: '00045-779',
       description: 'Galpão destinado para cargas internacionais'

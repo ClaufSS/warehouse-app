@@ -8,13 +8,15 @@ describe 'Usuário visita Home-page' do
   end
 
   it 'e vê galpões cadastrados' do
-    Warehouse.create(name: 'Rio', code: 'RJU', city: 'Rio de Janeiro',
+    Warehouse.create!(name: 'Rio', code: 'RJU', city: 'Rio de Janeiro',
                      area: 80_000, address: 'Av do Aeroporto, 588',
                      cep: '56466-001', description: 'Um galpão ae')
-    Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceió',
+
+    Warehouse.create!(name: 'Maceio', code: 'MCZ', city: 'Maceió',
                      area: 75_000, address: 'Rua Macelino Campos, 196',
                      cep: '05867-286', description: 'Outro galpão')
-    Warehouse.create(name: 'SPaulo', code: 'SPR', city: 'São Paulo',
+                     
+    Warehouse.create!(name: 'SPaulo', code: 'SPR', city: 'São Paulo',
                      area: 120_000, address: 'Av Paulista, 648',
                      cep: '00010-253', description: 'Mias um galpão')
 
