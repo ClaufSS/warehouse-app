@@ -36,7 +36,7 @@ describe 'Usuário vê detalhes do fornecedor' do
   it 'e volta para tela inicial' do
     Supplier.create!(
       corporate_name: 'ByteWise Tecnologia Ltda', brand_name: 'ByteWise',
-      registration_number: '23.456.789/0001-02', full_address: 'Av. do Progresso, 456',
+      registration_number: '23456789000102', full_address: 'Av. do Progresso, 456',
       city: 'Belo Horizonte', state: 'MG', email: 'contato@bytewise.com.br'
     )
 
