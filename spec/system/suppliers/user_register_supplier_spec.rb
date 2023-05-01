@@ -34,8 +34,11 @@ describe 'Usuário registra um novo fornecedor' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Fornecedor cadastrado com sucesso'
-    expect(page).to have_content 'AlimSaudáveis'
-    expect(page).to have_content 'Florianópolis - SC'
+    expect(page).to have_content 'Alimentos Saudáveis Ltda (AlimSaudáveis)'
+    expect(page).to have_content 'CNPJ: 34567890000103'
+    expect(page).to have_content 'Endereço: Rua das Flores, 789'
+    expect(page).to have_content 'Cidade: Florianópolis - SC'
+    expect(page).to have_content 'Email: contato@alimentossa.com.br'
   end
 
   it 'com dados incoretos' do

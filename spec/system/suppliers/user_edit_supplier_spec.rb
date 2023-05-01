@@ -35,18 +35,17 @@ describe 'Usuário edita um fornecedor' do
     click_on 'SaboresDeliciosos'
     click_on 'Editar'
     
-    expect(page).to have_field 'Nome fantasia', with: 'Deliciosos'
-    expect(page).to have_field 'Endereço completo', with: 'Av. da Praia, 789'
-    expect(page).to have_field 'Cidade', with: 'Florianópolis'
-    expect(page).to have_field 'Estado', with: 'SC'
+    fill_in 'Nome fantasia', with: 'Deliciosos'
+    fill_in 'Endereço completo', with: 'Av. da Praia, 789'
+    fill_in 'Cidade', with: 'Florianópolis'
+    fill_in 'Estado', with: 'SC'
 
     click_on 'Enviar'
 
-    expect(current_path).to eq suppliers_path
-
-    expect(page).to have_content 'Fornecedor cadastrado com sucesso'
-    expect(page).to have_content 'Deliciosos'
-    expect(page).to have_content 'Florianópolis - SC'
+    expect(page).to have_content 'Cadastrado atualizado com sucesso.'
+    expect(page).to have_content 'Sabores Deliciosos SA (Deliciosos)'
+    expect(page).to have_content 'Endereço: Av. da Praia, 789'
+    expect(page).to have_content 'Cidade: Florianópolis - SC'
   end
 
   it 'com dados incoretos' do
@@ -68,6 +67,6 @@ describe 'Usuário edita um fornecedor' do
 
     click_on 'Enviar'
 
-    expect(page).to have_content 'Não foi possível cadastrar fornecedor.'
+    expect(page).to have_content 'Não foi possível atualizar fornecedor.'
   end
 end

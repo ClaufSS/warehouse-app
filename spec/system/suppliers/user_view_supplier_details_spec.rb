@@ -12,7 +12,7 @@ describe 'Usuário vê detalhes do fornecedor' do
     click_on 'Fornecedores'
     click_on 'SolTec'
 
-    expect(page).to eq supplier_path(supplier)
+    expect(current_path).to eq supplier_path(supplier)
   end
   
   it 'com sucesso' do
@@ -26,12 +26,10 @@ describe 'Usuário vê detalhes do fornecedor' do
     click_on 'Fornecedores'
     click_on 'SolTec'
 
-    expect(page).to have_content 'Razão social: Soluções Tecnológicas SA'
-    expect(page).to have_content 'Nome fantasia: SolTec'
+    expect(page).to have_content 'Soluções Tecnológicas SA (SolTec)'
     expect(page).to have_content 'CNPJ: 12345678000101'
-    expect(page).to have_content 'Endereço completo: Rua Principal, 123'
-    expect(page).to have_content 'Cidade: São Paulo'
-    expect(page).to have_content 'Estado: SP'
+    expect(page).to have_content 'Endereço: Rua Principal, 123'
+    expect(page).to have_content 'Cidade: São Paulo - SP'
     expect(page).to have_content 'Email: contato@solutecltda.com.br'
   end
   
@@ -44,9 +42,9 @@ describe 'Usuário vê detalhes do fornecedor' do
 
     visit root_path
     click_on 'Fornecedores'
-    click_on 'SolTec'
+    click_on 'ByteWise'
     click_on 'Home'
 
-    expect(page).to eq root_path
+    expect(current_path).to eq root_path
   end
 end

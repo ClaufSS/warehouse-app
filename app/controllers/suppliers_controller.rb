@@ -15,22 +15,23 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Supplier.new(suppliers_params)
+    
     if @supplier.save
-      flash[:notice] = "Supplier successfully created"
-      redirect_to @supplier
+      flash[:notice] = 'Fornecedor cadastrado com sucesso.'
+      return redirect_to @supplier
     end
     
-    flash[:notice] = "Something went wrong"
+    flash[:notice] = 'Não foi possível cadastrar fornecedor.'
     render 'new'
   end
 
   def update
     if @supplier.update(suppliers_params)
-      flash[:notice] = "Supplier was successfully updated"
+      flash[:notice] = 'Cadastrado atualizado com sucesso.'
       return redirect_to @supplier
     end
   
-    flash[:notice] = "Something went wrong"
+    flash[:notice] = 'Não foi possível atualizar fornecedor.'
     render 'edit'
   end
 
@@ -46,4 +47,3 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:id])
   end
 end
-

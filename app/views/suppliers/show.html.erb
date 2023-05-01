@@ -1,0 +1,29 @@
+
+<section>
+  <div>
+    <div >
+      <p><%= @supplier.corporate_name %> (<%= @supplier.brand_name %>)</p>
+    </div>
+
+    <div>
+      <p>CNPJ: <%= @supplier.registration_number %></p>
+    </div>
+
+    <div>
+      <p>Endereço: <%= @supplier.full_address %></p>
+    </div>
+
+    <div>
+      <p>Cidade: <%= @supplier.city %> - <%= @supplier.state %></p>
+    </div>
+
+    <div>
+      <p>Email: <%= @supplier.email %></p>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "Editar", edit_supplier_path %>
+  </div>
+
+</section>
