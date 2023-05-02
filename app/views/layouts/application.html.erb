@@ -17,9 +17,22 @@
     <nav>
       <div><%= link_to "Home", root_path %></div>
       <div><%= link_to "Fornecedores", suppliers_path %></div>
+      <div><%= link_to "Modelos de produto", product_models_path %></div>
+
+      <div>
+        <% if user_signed_in? %>
+          <%= current_user.name %>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Entrar", new_user_session_path %>
+          <%= link_to "Criar conta", new_user_registration_path %>
+        <% end %>
+      </div>
+
     </nav>
 
     <div>
+      <p><%= alert %></p>
       <p><%= notice %></p>
     </div>
 

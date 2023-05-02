@@ -2,7 +2,8 @@ pt-BR:
   activerecord:
     models:
       warehouse: 'Galpão'
-      supplier: 'Fornecedores'
+      supplier: 'Fornecedor'
+      product_model: 'Modelo de produto'
 
     attributes:
       warehouse:
@@ -13,6 +14,7 @@ pt-BR:
         address: 'Endereço'
         cep: 'CEP'
         description: 'Descrição'
+      
       supplier:
         corporate_name: 'Razão social'
         brand_name: 'Nome fantasia'
@@ -21,4 +23,13 @@ pt-BR:
         city: 'Cidade'
         state: 'Estado'
         email: 'Email'
-        
+      
+      product_model:
+        name: 'Nome'
+        weight: 'Peso'
+        width: 'Largura'
+        height: 'Altura'
+        depth: 'Profundidade'
+        sku: 'SKU'
+        supplier: 'Fornecedor'
+        supplier_id: 'Fornecedor'

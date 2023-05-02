@@ -1,0 +1,19 @@
+
+<section>
+  <div>
+    <h2>Impressora Multifuncional</h2>
+    
+    <p>Fornecedor: <%= @product_model.supplier.brand_name %></p>
+    
+    <p>Peso: <%= @product_model.weight %>g</p>
+    
+    <p>Dimensão:
+      <%= @product_model.width %>mm x
+      <%= @product_model.height %>mm x
+      <%= @product_model.depth %>mm
+    </p>
+
+    <p>SKU: <%= @product_model.sku %></p>
+  </div>
+</section>
+

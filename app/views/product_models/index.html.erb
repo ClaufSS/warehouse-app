@@ -1,0 +1,19 @@
+
+<section>
+  <div>
+    <%= link_to "Cadastrar modelo", new_product_model_path %>
+  </div>
+  
+  <% @product_models.each do |pm| %>
+    <div>
+      <p><%= pm.name %> (<%= pm.supplier.brand_name %>)</p>
+      <p><%= pm.sku %></p>
+    </div>
+  <% end %>
+
+  <% if @product_models.empty? %>
+    <div>
+      <p>Não existe nenhum modelo de produto cadastrado.</p>
+    </div>
+  <% end %>
+</section>
