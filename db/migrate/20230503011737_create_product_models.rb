@@ -2,10 +2,10 @@ class CreateProductModels < ActiveRecord::Migration[7.0]
   def change
     create_table :product_models do |t|
       t.string :name
-      t.integer :weight
-      t.integer :width
-      t.integer :height
-      t.integer :depth
+      t.float :weight
+      t.float :width
+      t.float :height
+      t.float :depth
       t.string :sku
       t.references :supplier, null: false, foreign_key: true
 

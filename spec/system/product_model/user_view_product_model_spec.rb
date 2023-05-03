@@ -36,7 +36,7 @@ describe 'Usuário vê modelos de produto' do
 
     ProductModel.create!(
       name: 'Monitor LED 24 polegadas', weight: 3500, width:55,
-      height: 350, depth: 100, sku: 'ST-01', supplier: supplier
+      height: 350, depth: 100, sku: 'ST-01ML24P0000000001', supplier: supplier
     )
 
     visit root_path
@@ -46,7 +46,7 @@ describe 'Usuário vê modelos de produto' do
     end
 
     expect(page).to have_content 'Monitor LED 24 polegadas'
-    expect(page).to have_content 'ST-01'
+    expect(page).to have_content 'ST-01ML24P0000000001'
     expect(page).to have_content 'SolTec'
   end
   

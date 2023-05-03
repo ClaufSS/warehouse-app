@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_141743) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_011737) do
   create_table "product_models", force: :cascade do |t|
     t.string "name"
-    t.integer "weight"
-    t.integer "width"
-    t.integer "height"
-    t.integer "depth"
+    t.float "weight"
+    t.float "width"
+    t.float "height"
+    t.float "depth"
     t.string "sku"
     t.integer "supplier_id", null: false
     t.datetime "created_at", null: false
