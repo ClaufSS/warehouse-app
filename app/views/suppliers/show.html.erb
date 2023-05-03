@@ -26,4 +26,10 @@
     <%= link_to "Editar", edit_supplier_path %>
   </div>
 
+  <div>
+    <% @supplier.product_models.each do |pm| %>
+      <%= render pm %>
+    <% end %>
+  </div>
+
 </section>

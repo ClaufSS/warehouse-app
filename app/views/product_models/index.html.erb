@@ -5,10 +5,7 @@
   </div>
   
   <% @product_models.each do |pm| %>
-    <div>
-      <p><%= pm.name %> (<%= pm.supplier.brand_name %>)</p>
-      <p><%= pm.sku %></p>
-    </div>
+    <%= render pm %>
   <% end %>
 
   <% if @product_models.empty? %>

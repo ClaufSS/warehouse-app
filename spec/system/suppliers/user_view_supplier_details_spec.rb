@@ -47,4 +47,12 @@ describe 'Usuário vê detalhes do fornecedor' do
 
     expect(current_path).to eq root_path
   end
+
+  it 'e vê modelos de modelos de produto' do
+    Supplier.create!(
+      corporate_name: 'Soluções Tecnológicas SA', brand_name: 'SolTec',
+      registration_number: '12345678000101', full_address: 'Rua Principal, 123',
+      city: 'São Paulo', state: 'SP', email: 'contato@solutecltda.com.br'
+    )
+  end
 end

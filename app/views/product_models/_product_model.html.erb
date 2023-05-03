@@ -1,0 +1,15 @@
+<div>
+  <%= link_to product_model do %>
+    <p><%= product_model.name %> (<%= product_model.supplier.brand_name %>)</p>
+  <% end %>
+
+  <% if controller_name == 'supplier' %>
+    <p>
+      <%= product_model.width %>cm x
+      <%= product_model.height %>cm x
+      <%= product_model.depth %>cm
+    </p>
+  <% end %>
+
+  <p><%= product_model.sku %></p>
+</div>
