@@ -6,15 +6,15 @@ describe 'Usuário cria conta' do
     click_on 'Criar conta'
 
     within 'form' do
-      fill_in "Nome",	with: "Clauf"
-      fill_in "E-mail",	with: "claufs@gmail.com"
+      fill_in "Nome",	with: "Jorginho"
+      fill_in "E-mail",	with: "jorginhos@gmail.com"
       fill_in "Senha",	with: "apassword"
       fill_in "Confirme sua senha",	with: "apassword"
       click_on 'Criar conta'
     end
 
     expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
-    expect(page).to have_content 'Clauf'
+    expect(page).to have_content 'Jorginho'
     expect(page).not_to have_content 'Criar conta'
   end
 end

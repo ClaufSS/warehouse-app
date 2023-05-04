@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário se autentica' do
   before :each do
     User.create!(
-      email: 'claufs@gmail.com', password: 'apassword', name: 'Clauf'
+      email: 'jorginhos@gmail.com', password: 'apassword', name: 'Jorginho'
     )
   end
   
@@ -11,13 +11,13 @@ describe 'Usuário se autentica' do
     visit new_user_session_path
 
     within 'form' do
-      fill_in 'E-mail',	with: 'claufs@gmail.com'
+      fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'apassword'
       click_on 'Entrar'
     end
 
     expect(page).to have_content 'Login efetuado com sucesso'
-    expect(page).to have_content 'Clauf'
+    expect(page).to have_content 'Jorginho'
     expect(page).not_to have_button 'Entrar'
   end
 
@@ -25,7 +25,7 @@ describe 'Usuário se autentica' do
     visit new_user_session_path
 
     within 'form' do
-      fill_in 'E-mail',	with: 'claufs@gmail.com'
+      fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'otherpassword'
       click_on 'Entrar'
     end
@@ -37,7 +37,7 @@ describe 'Usuário se autentica' do
     visit new_user_session_path
 
     within 'form' do
-      fill_in 'E-mail',	with: 'claufs@gmail.com'
+      fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'apassword'
       click_on 'Entrar'
     end
