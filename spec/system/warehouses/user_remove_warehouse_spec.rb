@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário remove um galpão' do
+  before :each do
+    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+    login_as(user, :scope => :user)
+  end
+
+  
   it 'com sucesso' do
     Warehouse.create!(
       name: 'Cuiaba', code: 'CWB', city: 'Cuiabá', area: 10_000,

@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário entra em detalhes de um galpão' do
+  before :each do
+    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+    login_as(user, :scope => :user)
+  end
+
+  
   it 'e vê informações adicionais' do
     Warehouse.create!(
       name: 'Aeroporto Guarulhos', code: 'GRU', city: 'Guarulhos', area: 100_000,

@@ -2,6 +2,12 @@ require 'rails_helper'
 
 
 describe 'Usuário cadastra um novo galpão' do
+  before :each do
+    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+    login_as(user, :scope => :user)
+  end
+
+  
   it 'a partir da tela inicial' do
 
     visit root_path

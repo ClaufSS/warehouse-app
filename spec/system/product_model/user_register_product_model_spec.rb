@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra novo modelo de produto' do
-  it 'com sucesso' do
+  before :each do
     user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
     login_as(user, :scope => :user)
+  end
 
+  it 'com sucesso' do
     supplier = Supplier.create!(
       corporate_name: 'Soluções Tecnológicas SA', brand_name: 'SolTec',
       registration_number: '12345678000101', full_address: 'Rua Principal, 123',
@@ -33,9 +35,6 @@ describe 'Usuário cadastra novo modelo de produto' do
   end
 
   it 'com informações incorretas' do
-    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
-    login_as(user, :scope => :user)
-    
     Supplier.create!(
       corporate_name: 'Soluções Tecnológicas SA', brand_name: 'SolTec',
       registration_number: '12345678000101', full_address: 'Rua Principal, 123',

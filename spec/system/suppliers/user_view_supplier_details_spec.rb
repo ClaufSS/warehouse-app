@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes do fornecedor' do
+  before :each do
+    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+    login_as(user, :scope => :user)
+  end
+
+  
   it 'a partir da tela inicial' do
     supplier = Supplier.create!(
       corporate_name: 'Soluções Tecnológicas SA', brand_name: 'SolTec',

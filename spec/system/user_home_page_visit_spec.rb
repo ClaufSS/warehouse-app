@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário visita Home-page' do
+  before :each do
+    user = User.create!(:email => 'test@example.com', :password => 'f4k3p455w0rd')
+    login_as(user, :scope => :user)
+  end
+
+  
   it 'e vê nome da app' do
     visit root_path
 

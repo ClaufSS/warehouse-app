@@ -1,7 +1,6 @@
 class ProductModelsController < ApplicationController
   before_action :find_product_model, only: [:show]
   before_action :set_product_model, only: [:create]
-  before_action :authenticate_user!, only: [:index]
 
 
   def index
