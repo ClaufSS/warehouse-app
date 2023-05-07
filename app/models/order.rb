@@ -3,8 +3,9 @@ class Order < ApplicationRecord
   belongs_to :supplier
   belongs_to :user
 
-
+  validates :expected_delivery_date, :code, presence: true
   validate :date_be_in_future
+
   before_validation :generate_code
 
   private
