@@ -11,6 +11,7 @@ describe 'Usuário visita Home-page' do
     visit root_path
 
     expect(page).to have_content 'Galpões & Estoques'
+    #expect(page).to have_link 'Galpões & Estoques', href: root_path
   end
 
   it 'e vê galpões cadastrados' do

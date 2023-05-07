@@ -18,7 +18,8 @@
       <div><%= link_to "Home", root_path %></div>
       <div><%= link_to "Fornecedores", suppliers_path %></div>
       <div><%= link_to "Modelos de produto", product_models_path %></div>
-
+      <div><%= link_to "Registrar pedido", new_order_path %></div>
+      
       <div>
         <% if user_signed_in? %>
           <%= current_user.name %>

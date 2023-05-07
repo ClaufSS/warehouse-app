@@ -4,4 +4,9 @@ class Supplier < ApplicationRecord
   validates_format_of :registration_number, with: /\A\d{14}\z/, message: 'Deve fornecer 14 números'
 
   has_many :product_models
+
+
+  def full_description
+    "#{corporate_name} - #{brand_name}"
+  end
 end

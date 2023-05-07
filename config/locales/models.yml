@@ -4,6 +4,7 @@ pt-BR:
       warehouse: 'Galpão'
       supplier: 'Fornecedor'
       product_model: 'Modelo de produto'
+      order: 'Pedido'
 
     attributes:
       warehouse:
@@ -33,3 +34,12 @@ pt-BR:
         sku: 'SKU'
         supplier: 'Fornecedor'
         supplier_id: 'Fornecedor'
+
+      order:
+        warehouse: 'Galpão'
+        warehouse_id: 'Galpão'
+        supplier: 'Fornecedor'
+        supplier_id: 'Fornecedor'
+        user: 'Usuário'
+        user_id: 'Usuário'
+        expected_delivery_date: 'Data prevista de entrega'
