@@ -1,7 +1,2 @@
 
-<section>
-  <p>Galpão de destino: <%= @order.warehouse.full_description %></p>
-  <p>Fornecedor: <%= @order.supplier.full_description %></p>
-  <p>Usuário do pedido: <%= @order.user.name %></p>
-  <p>Data prevista de entrega: <%= I18n.localize @order.expected_delivery_date %></p>
-</section>
+<%= render @order %>
