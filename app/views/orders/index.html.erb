@@ -1,0 +1,14 @@
+
+<section>
+  <h2>Meus pedidos</h2>
+
+  <% if @orders.empty? %>
+    <div>
+      <p>Você não tem pedidos cadastrados.<p>
+    </div>
+  <% end %>
+
+  <div>
+    <%= render @orders %>
+  </div>
+</section>

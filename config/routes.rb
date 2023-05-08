@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :suppliers, only: [:index, :show, :new, :create, :edit, :update]
   resources :product_models, only: [:index, :show, :new, :create]
   
-  resources :orders, only: [:new, :create, :show] do
+  resources :orders, only: [:index, :show, :new, :create] do
     get 'search', on: :collection
   end
 end
