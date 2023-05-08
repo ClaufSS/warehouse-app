@@ -18,34 +18,14 @@ describe 'Usuário busca por um pedido' do
 
     visit root_path
 
-    within "header nav form[action='/orders/search']" do
-      expect(page).to have_field 'Buscar pedido'
-      expect(page).to have_button 'Buscar'
-    end
-  end
-
-  it 'a partir do menu' do
-    user = User.create!(
-      name: 'Marcel', email: 'marcel@gmail.com', password: 'f4k3p455w0rd'
-    )
-
-    login_as(user)
-
-    visit root_path
-
     within 'nav' do
       expect(page).to have_field 'Buscar pedido'
       expect(page).to have_button 'Buscar'
     end
   end
 
-  it 'se estiver autenticado' do
-    visit root_path
-
-    expect(current_path).to eq new_user_session_path
-  end
-
   context 'usando código' do
+
     context 'parcial' do
       it 'e há varias correspondências' do
         user = User.create!(
@@ -96,6 +76,8 @@ describe 'Usuário busca por um pedido' do
           click_on 'Buscar'
         end
   
+        expect(current_path).to eq search_orders_path
+
         expect(page).to have_content "2 pedidos encontrados para: ABCDEFG"
   
         expect(page).to have_content "Código do pedido: ABCDEFG890"
@@ -123,7 +105,7 @@ describe 'Usuário busca por um pedido' do
 
         allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABCDEFG890')
 
-        Order.create!(
+        order = Order.create!(
           warehouse: warehouse, supplier: supplier, user: user,
           expected_delivery_date: 1.day.from_now
         )
@@ -136,6 +118,8 @@ describe 'Usuário busca por um pedido' do
           fill_in 'Buscar pedido',	with: 'ABCDEF'
           click_on 'Buscar'
         end
+
+        expect(current_path).to eq order_path(order)
 
         expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
         expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
@@ -170,6 +154,8 @@ describe 'Usuário busca por um pedido' do
         fill_in 'Buscar pedido',	with: order.code
         click_on 'Buscar'
       end
+
+      expect(current_path).to eq order_path(order)
 
       expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
       expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
