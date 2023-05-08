@@ -5,7 +5,7 @@ describe 'Usuário cria conta' do
     visit root_path
     click_on 'Criar conta'
 
-    within 'form' do
+    within 'main form' do
       fill_in "Nome",	with: "Jorginho"
       fill_in "E-mail",	with: "jorginhos@gmail.com"
       fill_in "Senha",	with: "apassword"

@@ -25,4 +25,11 @@ class OrdersController < ApplicationController
     flash.now[:notice] = 'Não foi possível criar pedido.'
     render :new
   end
+
+  def search
+    @query = params[:query]
+    @orders = Order.where('code LIKE ?', "%#{@query}%")
+
+    redirect_to @orders.first if @orders.count == 1
+  end
 end

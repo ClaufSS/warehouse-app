@@ -10,7 +10,7 @@ describe 'Usuário se autentica' do
   it 'com sucesso' do
     visit new_user_session_path
 
-    within 'form' do
+    within 'main form' do
       fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'apassword'
       click_on 'Entrar'
@@ -24,7 +24,7 @@ describe 'Usuário se autentica' do
   it 'com dados incorretos' do
     visit new_user_session_path
 
-    within 'form' do
+    within 'main form' do
       fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'otherpassword'
       click_on 'Entrar'
@@ -36,7 +36,7 @@ describe 'Usuário se autentica' do
   it 'e faz logout' do
     visit new_user_session_path
 
-    within 'form' do
+    within 'main form' do
       fill_in 'E-mail',	with: 'jorginhos@gmail.com'
       fill_in 'Senha',	with: 'apassword'
       click_on 'Entrar'
