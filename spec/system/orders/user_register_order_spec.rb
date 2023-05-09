@@ -5,6 +5,7 @@ describe 'Usuário cadastra pedido' do
     visit root_path
 
     expect(current_path).to eq new_user_session_path
+    expect(page).not_to have_link 'Cadastrar pedido'
   end
 
   it 'com sucesso' do
@@ -23,6 +24,7 @@ describe 'Usuário cadastra pedido' do
       city: 'São Paulo', state: 'SP', email: 'contato@solutecltda.com.br'
     )
 
+    allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('MPRKU64DKY')
 
     visit root_path
 
@@ -30,7 +32,7 @@ describe 'Usuário cadastra pedido' do
       click_on 'Registrar pedido'
     end
 
-    within "form[action='/orders']" do
+    within "main form" do
       select 'GRU - Aeroporto Guarulhos', from: 'Galpão'
       select 'Soluções Tecnológicas SA - SolTec', from: 'Fornecedor'
       fill_in 'Data prevista de entrega',	with: 1.day.from_now
@@ -38,9 +40,11 @@ describe 'Usuário cadastra pedido' do
     end
 
     expect(page).to have_content 'Pedido registrado com sucesso.'
-    expect(page).to have_content 'Galpão de destino: GRU - Aeroporto Guarulhos'
+    expect(page).to have_content 'Pedido MPRKU64DKY'
+    expect(page).to have_content 'Galpão: GRU - Aeroporto Guarulhos'
     expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
-    expect(page).to have_content 'Usuário do pedido: Jorginho'
-    expect(page).to have_content "Data prevista de entrega: #{I18n.localize 1.day.from_now.to_date}"
+    expect(page).to have_content 'Usuário: Jorginho'
+    expect(page).to have_content 'Contato do usuário: jorginho@example.com'
+    expect(page).to have_content "Data prevista de entrega: #{I18n.l 1.day.from_now.to_date}"
   end
 end

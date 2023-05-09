@@ -9,15 +9,6 @@
     <p>Não foi encontrado correspondência para: <%= @query %></p>
   <% end %>
 
-  <%= @orders.each do |order| %>
-    <div>
-      <%= link_to order do %>
-        <p>Código do pedido: <%= order.code %></p>
-      <% end %>
-      
-      <p>Galpão destino: <%= order.warehouse.full_description %></p>
-      <p>Fornecedor: <%= order.supplier.full_description %></p>
-    </div>
-  <% end %>
+  <%= render @orders %>
 
 </section>

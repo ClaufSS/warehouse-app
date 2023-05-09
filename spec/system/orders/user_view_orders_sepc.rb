@@ -48,11 +48,11 @@ describe "Usuário acessa 'meus pedidos'" do
       city: 'Belo Horizonte', state: 'MG', email: 'contato@bytewise.com.br'
     )
 
-    Order.create!(
+    fisrt_order = Order.create!(
       warehouse: first_warehouse, supplier: first_supplier, user: user,
       expected_delivery_date: 1.day.from_now
     )
-    Order.create!(
+    second_order = Order.create!(
       warehouse: second_warehouse, supplier: second_supplier, user: user,
       expected_delivery_date: 2.day.from_now
     )
@@ -65,13 +65,17 @@ describe "Usuário acessa 'meus pedidos'" do
       click_on 'Meus Pedidos'
     end
   
+    expect(page).to have_content "Pedido: #{fisrt_order.code}"
     expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
     expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
     expect(page).to have_content 'Usuário do pedido: Marcel'
+    expect(page).to have_content "Previsão de entraga: #{I18n.l 1.day.from_now.to_date}"
 
+    expect(page).to have_content "Pedido: #{second_order.code}"
     expect(page).to have_content 'Galpão de destino: GRU - Aeroporto Guarulhos'
     expect(page).to have_content 'Fornecedor: ByteWise Tecnologia Ltda - ByteWise'
     expect(page).to have_content 'Usuário do pedido: Marcel'
+    expect(page).to have_content "Previsão de entraga: #{I18n.l 2.day.from_now.to_date}"
   end
 
 
@@ -104,11 +108,11 @@ describe "Usuário acessa 'meus pedidos'" do
       city: 'Belo Horizonte', state: 'MG', email: 'contato@bytewise.com.br'
     )
 
-    Order.create!(
+    fisrt_order = Order.create!(
       warehouse: first_warehouse, supplier: first_supplier, user: user,
       expected_delivery_date: 1.day.from_now
     )
-    Order.create!(
+    second_order = Order.create!(
       warehouse: second_warehouse, supplier: second_supplier, user: another_user,
       expected_delivery_date: 2.day.from_now
     )
@@ -120,14 +124,18 @@ describe "Usuário acessa 'meus pedidos'" do
     within 'nav' do
       click_on 'Meus Pedidos'
     end
-    
+
+    expect(page).to have_content "Pedido: #{fisrt_order.code}"
     expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
     expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
     expect(page).to have_content 'Usuário do pedido: Marcel'
+    expect(page).to have_content "Previsão de entraga: #{I18n.l 1.day.from_now.to_date}"
 
-    expect(page).not_to have_content 'Galpão de destino: GRU - Aeroporto Guarulhos'
-    expect(page).not_to have_content 'Fornecedor: ByteWise Tecnologia Ltda - ByteWise'
-    expect(page).not_to have_content 'Usuário do pedido: Antonio'
+    expect(page).to have_content "Pedido: #{second_order.code}"
+    expect(page).to have_content 'Galpão de destino: GRU - Aeroporto Guarulhos'
+    expect(page).to have_content 'Fornecedor: ByteWise Tecnologia Ltda - ByteWise'
+    expect(page).to have_content 'Usuário do pedido: Antonio'
+    expect(page).to have_content "Previsão de entraga: #{I18n.l 2.day.from_now.to_date}"
   end
 
   it 'e não tem pedidos' do

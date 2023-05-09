@@ -1,2 +1,27 @@
 
-<%= render @order %>
+<section>
+  <div>
+    <h2><%= Order.model_name.human %> <%= @order.code %></h2>
+    
+    <div>
+      <p><%= Warehouse.model_name.human %>: <%= @order.warehouse.full_description %></p>
+    </div>
+
+    <div>
+      <p><%= Supplier.model_name.human %>: <%= @order.supplier.full_description %></p>
+    </div>
+      
+    <div>
+      <p><%= Order.human_attribute_name :user %>: <%= @order.user.name %></p>
+    </div>
+
+    <div>
+      <p><%= t :user_contact %>: <%= @order.user.email %></p>
+    </div>
+    
+    <div>
+      <p><%= Order.human_attribute_name :expected_delivery_date %>: <%= l @order.expected_delivery_date %></p>
+    </div>
+    
+  </div>
+</section>

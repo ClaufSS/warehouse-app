@@ -31,6 +31,9 @@ describe 'Usuário busca por um pedido' do
         user = User.create!(
           name: 'Marcel', email: 'marcel@gmail.com', password: 'f4k3p455w0rd'
         )
+        another_user = User.create!(
+          name: 'Antonio', email: 'antonio@gmail.com', password: 'f4k3p455w0rd'
+        )
         
         first_warehouse = Warehouse.create!(
           name: 'Maceio', code: 'MCZ', city: 'Maceió', area: 75_000,
@@ -63,7 +66,7 @@ describe 'Usuário busca por um pedido' do
         allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABCDEFGH90')
   
         Order.create!(
-          warehouse: second_warehouse, supplier: second_supplier, user: user,
+          warehouse: second_warehouse, supplier: second_supplier, user: another_user,
           expected_delivery_date: 2.day.from_now
         )
   
@@ -79,14 +82,18 @@ describe 'Usuário busca por um pedido' do
         expect(current_path).to eq search_orders_path
 
         expect(page).to have_content "2 pedidos encontrados para: ABCDEFG"
-  
-        expect(page).to have_content "Código do pedido: ABCDEFG890"
-        expect(page).to have_content 'Galpão destino: MCZ - Maceio'
-        expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
-  
-        expect(page).to have_content "Código do pedido: ABCDEFG890"
-        expect(page).to have_content 'Galpão destino: GRU - Aeroporto Guarulhos'
-        expect(page).to have_content 'Fornecedor: ByteWise Tecnologia Ltda - ByteWise'
+        
+        expect(page).to have_content 'Pedido: ABCDEFG890'
+        expect(page).to have_content 'Galpão de destino: MCZ'
+        expect(page).to have_content 'Fornecedor: SolTec'
+        expect(page).to have_content 'Usuário: Marcel'
+        expect(page).to have_content "Previsão de entrega: #{I18n.l 1.day.from_now.to_date}"
+
+        expect(page).to have_content 'Pedido: ABCDEFGH90'
+        expect(page).to have_content 'Galpão de destino: GRU'
+        expect(page).to have_content 'Fornecedor: ByteWise'
+        expect(page).to have_content 'Usuário: Antonio'
+        expect(page).to have_content "Previsão de entrega: #{I18n.l 2.day.from_now.to_date}"
       end
 
       it 'e há apenas uma correspondência' do
@@ -121,10 +128,13 @@ describe 'Usuário busca por um pedido' do
 
         expect(current_path).to eq order_path(order)
 
-        expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
+        expect(page).to have_content 'Pedido ABCDEFG890'
+        expect(page).to have_content 'Galpão: MCZ - Maceio'
         expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
-        expect(page).to have_content 'Usuário do pedido: Marcel'
-        expect(page).to have_content "Data prevista de entrega: #{I18n.localize 1.day.from_now.to_date}"
+        expect(page).to have_content 'Usuário: Marcel'
+        expect(page).to have_content 'Contato do usuário: marcel@gmail.com'
+        expect(page).to have_content "Data prevista de entrega: #{I18n.l 1.day.from_now.to_date}"
+        
       end
     end
 
@@ -157,10 +167,12 @@ describe 'Usuário busca por um pedido' do
 
       expect(current_path).to eq order_path(order)
 
-      expect(page).to have_content 'Galpão de destino: MCZ - Maceio'
+      expect(page).to have_content "Pedido #{order.code}"
+      expect(page).to have_content 'Galpão: MCZ - Maceio'
       expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
-      expect(page).to have_content 'Usuário do pedido: Marcel'
-      expect(page).to have_content "Data prevista de entrega: #{I18n.localize 1.day.from_now.to_date}"
+      expect(page).to have_content 'Usuário: Marcel'
+      expect(page).to have_content 'Contato do usuário: marcel@gmail.com'
+      expect(page).to have_content "Data prevista de entrega: #{I18n.l 1.day.from_now.to_date}"
     end
 
     it 'e não há correspondência' do
