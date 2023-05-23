@@ -5,6 +5,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find params[:id]
+
+    if @order.user != current_user
+      flash[:alert] = 'Você não possui autorização de acesso ao pedido.'
+      redirect_to root_path
+    end
   end
 
   def new
@@ -28,6 +33,9 @@ class OrdersController < ApplicationController
 
     flash.now[:notice] = 'Não foi possível criar pedido.'
     render :new
+  end
+
+  def edit
   end
 
   def search

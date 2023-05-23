@@ -1,6 +1,6 @@
 
 <div>
-  <p>Pedido: <%= order.code %></p>
+  <p>Pedido: <%= link_to order.code, order %></p>
   <p>Galpão de destino: <%= order.warehouse.code %></p>
   <p>Fornecedor: <%= order.supplier.brand_name %></p>
   <p>Usuário: <%= order.user.name %></p>
