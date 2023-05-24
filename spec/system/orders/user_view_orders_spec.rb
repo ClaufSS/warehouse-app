@@ -215,6 +215,57 @@ describe "Usuário acessa 'meus pedidos'" do
 
     expect(current_path).not_to eq order_path(order)
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Você não possui autorização de acesso ao pedido.'
+    expect(page).to have_content 'Acesso não permitido.'
+  end
+
+  it 'e vê produtos' do
+    user = User.create!(
+      name: 'Marcel', email: 'marcel@gmail.com', password: 'f4k3p455w0rd'
+    )
+    warehouse = Warehouse.create!(
+      name: 'Maceio', code: 'MCZ', city: 'Maceió', area: 75_000,
+      address: 'Rua Macelino Campos, 196', cep: '05867-286', description: 'Galpão de Maceio'
+    )
+    supplier = Supplier.create!(
+      corporate_name: 'Soluções Tecnológicas SA', brand_name: 'SolTec',
+      registration_number: '12345678901234', full_address: 'Rua Principal, 123',
+      city: 'São Paulo', state: 'SP', email: 'contato@solutecltda.com.br'
+    )
+    order = Order.create!(
+      warehouse: warehouse, supplier: supplier, user: user,
+      expected_delivery_date: 1.day.from_now
+    )
+    antother_order = Order.create!(
+      warehouse: warehouse, supplier: supplier, user: user,
+      expected_delivery_date: 5.days.from_now
+    )
+    product_a = ProductModel.create!(
+      name: 'Produto A', weight: 100, width: 10, height: 15,
+      depth: 20, sku: 'PROD0A08901234567890', supplier: supplier
+    )
+    
+    product_b = ProductModel.create!(
+      name: 'Produto B', weight: 100, width: 11, height: 16,
+      depth: 21, sku: 'PROD0B08901234567890', supplier: supplier
+    )
+    
+    product_c = ProductModel.create!(
+      name: 'Produto C', weight: 100, width: 12, height: 17,
+      depth: 22, sku: 'PROD0C08901234567890', supplier: supplier
+    )
+
+    OrderItem.create!(order: order, product_model: product_a, quantity: 19)
+    OrderItem.create!(order: order, product_model: product_b, quantity: 20)
+    OrderItem.create!(order: antother_order, product_model: product_c, quantity: 15)
+
+    login_as(user)
+    visit root_path
+    click_on 'Meus Pedidos'
+    click_on order.code
+
+    expect(page).to have_content 'Itens do pedido'
+    expect(page).to have_content '19 x Produto A'
+    expect(page).to have_content '20 x Produto B'
+    expect(page).not_to have_content '15 x Produto C'
   end
 end

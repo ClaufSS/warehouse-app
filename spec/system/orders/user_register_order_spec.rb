@@ -44,6 +44,7 @@ describe 'Usuário cadastra pedido' do
     expect(page).to have_content 'Galpão: GRU - Aeroporto Guarulhos'
     expect(page).to have_content 'Fornecedor: Soluções Tecnológicas SA - SolTec'
     expect(page).to have_content 'Usuário: Jorginho'
+    expect(page).to have_content 'Status: Pendente'
     expect(page).to have_content 'Contato do usuário: jorginho@example.com'
     expect(page).to have_content "Data prevista de entrega: #{I18n.l 1.day.from_now.to_date}"
   end

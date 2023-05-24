@@ -1,2 +1,5 @@
 pt-BR:
   user_contact: 'Contato do usuário'
+  pending: Pendente
+  delivered: Entregue
+  canceled: Cancelado
